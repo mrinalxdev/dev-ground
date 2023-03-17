@@ -2,14 +2,23 @@ import React from 'react'
 import { Center, Box, Heading, FormControl, FormLabel, Input, FormErrorMessage } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { REGISTER } from '../../lib/routes'
-import { DASHBOARD } from '../../lib/routes'
+import { DASHBOARD, REGISTER } from '../../lib/routes'
 import { useLogin } from '../../hooks/auth'
 import { emailValidate, passwordValidate } from '../../utils/form-validate'
 
 const Login = () => {
     const {login, isLoading} = useLogin()
-    const { register } = useForm()
+    const { register, handleSubmit, reset } = useForm()
+
+    const handleLogIn = async(data) => {
+        const succeded = await login({
+            email: data.email,
+            password: data.password,
+            redirectTo: DASHBOARD,
+        })
+
+        if(succeded) reset()
+    }
 
   return (
     <Center w='100%' h='100vh'>
@@ -18,9 +27,7 @@ const Login = () => {
                 Log In
             </Heading>
 
-            <form onSubmit={() => {
-                console.log("Hello World")
-            }}>
+            <form onSubmit={handleSubmit(handleLogIn)}>
                 <FormControl isInvalid={false} py="2">
                     <FormLabel>Email</FormLabel>
                     <Input type='email' placeholder='Enter Your Email' {...register('email', emailValidate)} />
