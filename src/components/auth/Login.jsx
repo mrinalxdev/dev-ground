@@ -1,12 +1,14 @@
 import React from 'react'
 import { Center, Box, Heading, FormControl, FormLabel, Input, FormErrorMessage } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 import { REGISTER } from '../../lib/routes'
 import { DASHBOARD } from '../../lib/routes'
 import { useLogin } from '../../hooks/auth'
 
 const Login = () => {
     const {login, isLoading} = useLogin()
+    const { register } = useForm()
 
   return (
     <Center w='100%' h='100vh'>
@@ -20,12 +22,12 @@ const Login = () => {
             }}>
                 <FormControl isInvalid={false} py="2">
                     <FormLabel>Email</FormLabel>
-                    <Input type='email' placeholder='Enter Your Email' />
+                    <Input type='email' placeholder='Enter Your Email' {...register('email', emailValidate)} />
                     <FormErrorMessage>Invalid email for Authentication </FormErrorMessage>
                 </FormControl>
                 <FormControl isInvalid={true} py="2">
                     <FormLabel>Password</FormLabel>
-                    <Input type='password' placeholder='Enter Your password' />
+                    <Input type='password' placeholder='Enter Your password' {...register('password', passwordValidate)} />
                     <FormErrorMessage>Invalid email for Authentication </FormErrorMessage>
                 </FormControl>
 
