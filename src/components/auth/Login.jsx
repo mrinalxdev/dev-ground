@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { REGISTER } from '../../lib/routes'
 import { DASHBOARD } from '../../lib/routes'
 import { useLogin } from '../../hooks/auth'
+import { emailValidate, passwordValidate } from '../../utils/form-validate'
 
 const Login = () => {
     const {login, isLoading} = useLogin()

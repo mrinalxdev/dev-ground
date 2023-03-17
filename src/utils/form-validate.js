@@ -8,13 +8,13 @@ export const userNameValidate = {
 export const emailValidate = {
     required : {
         value : true,
-        message : 'Please Enter your email ID'
+        message : 'Please Enter your email ID',
     }
 }
 
 export const passwordValidate = {
     required : {
         value : true,
-        message : 'Please Enter your password'
+        message : 'Please Enter your password',
     }
 }
