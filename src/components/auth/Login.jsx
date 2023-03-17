@@ -2,9 +2,12 @@ import React from 'react'
 import { Center, Box, Heading, FormControl, FormLabel, Input, FormErrorMessage } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { REGISTER } from '../../lib/routes'
-import {DASHBOARD} from '../../lib/routes'
+import { DASHBOARD } from '../../lib/routes'
+import { useLogin } from '../../hooks/auth'
 
 const Login = () => {
+    const {login, isLoading} = useLogin()
+
   return (
     <Center w='100%' h='100vh'>
         <Box mx="3" maxW="xl" p="9" borderWidth="1px" borderRadius="lg">
