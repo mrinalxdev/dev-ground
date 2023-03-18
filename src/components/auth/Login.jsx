@@ -36,7 +36,7 @@ const Login = () => {
                 <FormControl isInvalid={true} py="2">
                     <FormLabel>Password</FormLabel>
                     <Input type='password' placeholder='Enter Your password' {...register('password', passwordValidate)} />
-                    <FormErrorMessage>Invalid email for Authentication </FormErrorMessage>
+                    <FormErrorMessage>Invalid password for Authentication </FormErrorMessage>
                 </FormControl>
 
                 <button className="bg-cyan-700 mt-2 px-4 py-2 w-full rounded-lg duration-150 ease-out hover:bg-cyan-400">Login</button>
