@@ -2,9 +2,9 @@ import React from 'react'
 import { Center, Box, Heading, FormControl, FormLabel, Input, FormErrorMessage } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { DASHBOARD, REGISTER } from '../../lib/routes'
 import { useLogin } from '../../hooks/auth'
 import { emailValidate, passwordValidate } from '../../utils/form-validate'
+import { REGISTER, DASHBOARD } from '../../lib/routes'
 
 const Login = () => {
     const {login, isLoading} = useLogin()
@@ -43,7 +43,7 @@ const Login = () => {
             </form>
 
             <p><Link to={REGISTER} className='font-bold text-cyan-900 hover:text-cyan-400'>Register</Link>
-             {" "}  Form a new account in DevGround <br /> Go to  <Link to={DASHBOARD}>Dashboard</Link></p>
+             {" "}  Form a new account in DevGround </p>
         </Box>
     </Center>
   )
