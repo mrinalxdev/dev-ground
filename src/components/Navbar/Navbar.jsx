@@ -9,7 +9,7 @@ const Navbar = () => {
   const {logout,isLoading } = useLogout()
 
   return (
-    <Flex shadow='sm' pos='fixed' width='full' borderTop='6px solid' height='16' zIndex='3' justify='center' borderTopColor='white' borderBottomRadius='6'>
+    <Flex shadow='sm' pos='fixed' width='full'  height='16' zIndex='3' justify='center' borderBottomRadius='6'>
         <Flex px='4' w='full' align='center' maxW='1200px'>
             <Link to={DASHBOARD}>
               <Heading>DevPlayGround</Heading>
