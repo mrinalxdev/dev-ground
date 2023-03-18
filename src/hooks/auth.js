@@ -1,12 +1,13 @@
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
 import { useAuthState, useSignOut } from 'react-firebase-hooks/auth'
-import { auth } from '../lib/firebase'
+import { auth, db } from '../lib/firebase'
 import { useState } from 'react'
 import { DASHBOARD } from '../lib/routes'
 import { useToast} from '@chakra-ui/react'
 import { LOGIN } from '../lib/routes'
 // import { Box } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
+import { setDoc, doc } from 'firebase/firestore'
 
 export const useAuth = () => {
 
@@ -17,6 +18,64 @@ export const useAuth = () => {
         isLoading,
         error
     }
+}
+
+export const useRegister = () => {
+    const [isLoading, setLoading] = useState(false)
+    const toast = useToast()
+
+    setLoading(true)
+
+    const register = async({username, email, password, redirectTo = DASHBOARD}) => {
+        setLoading(true)
+
+        const userNameExist = isUserNameExist(username)
+
+        if(username) {
+            toast({
+                title: 'Username Already Exist',
+                isClosable: true,
+                position:'top',
+                duration: 1200,
+            })
+            setLoading(false)
+            return false
+        }else {
+            try{
+                const res = await createUserWithEmailAndPassword(auth, email, password)
+                await setDoc(doc(db, 'users', res.user.uid), {
+                    id: res.user.id,
+                    username: username,
+                    avatar : "",
+                    Date: Date.now(),
+                })
+
+                toast({
+                    title: 'Registered',
+                    isClosable: true,
+                    position:'top',
+                    duration: 1200,
+                })
+                navigate(redirectTo)
+
+            } catch( error) {
+
+                toast({
+                    title: 'fail',//Username failed
+                    isClosable: true,
+                    position:'top',
+                    duration: 1200,
+                })
+
+            }
+        }
+
+        setLoading(false)
+
+    }
+
+    
+    return {register, isLoading}
 }
 
 export const useLogin = () => {
@@ -59,11 +118,9 @@ export const useLogin = () => {
 
         }
 
-
         setLoading(false)
         return(true)
     }
-
 
     return{login, isLoading}
 }
@@ -84,21 +141,6 @@ export const useLogout = () => {
             })
             navigate(LOGIN)
         }
-
     }
-
-    // async funtion logout(){
-    //     if(await signOut()) {
-    //         toast({
-    //             title: 'Logged Out',
-    //             isClosable: true,
-    //             postion:'top',
-    //             duration:1200,
-    //         })
-    //         navigate(LOGIN)
-    //     }
-    // }
-
-
     return {logout, isLoading}
 }
