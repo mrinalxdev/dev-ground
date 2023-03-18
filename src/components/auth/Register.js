@@ -3,22 +3,20 @@ import { Center, Box, Heading, FormControl, FormLabel, Input, FormErrorMessage }
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useRegister } from '../../hooks/auth'
-import { emailValidate, passwordValidate } from '../../utils/form-validate'
+import { userNameValidate, emailValidate, passwordValidate } from '../../utils/form-validate'
 import { DASHBOARD, LOGIN } from '../../lib/routes'
 
 const Register = () => {
-    const {register : signup, isLoading} = useRegister()
+    const {registerUser, isLoading} = useRegister()
     const { register, handleSubmit, reset } = useForm()
 
     const handleRegister = async(data) => {
-        const succeded = await signup({
+        registerUser({
             username: data.username,
             email: data.email,
             password: data.password,
             redirectTo: DASHBOARD,
         })
-
-        if(succeded) reset()
     }
 
   return (
@@ -31,7 +29,7 @@ const Register = () => {
             <form onSubmit={handleSubmit(handleRegister)}>
                 <FormControl isInvalid={false} py="2">
                     <FormLabel>Username</FormLabel>
-                    <Input type='text' placeholder='Enter Your username'/>
+                    <Input type='text' placeholder='Enter Your username'{...register('email', emailValidate)}/>
                     <FormErrorMessage>Invalid username for Authentication </FormErrorMessage>
                 </FormControl>
                 <FormControl isInvalid={false} py="2">

@@ -11,13 +11,11 @@ const Login = () => {
     const { register, handleSubmit, reset } = useForm()
 
     const handleLogIn = async(data) => {
-        const succeded = await login({
+        login({
             email: data.email,
             password: data.password,
             redirectTo: DASHBOARD,
         })
-
-        if(succeded) reset()
     }
 
   return (
@@ -33,7 +31,7 @@ const Login = () => {
                     <Input type='email' placeholder='Enter Your Email' {...register('email', emailValidate)} />
                     <FormErrorMessage>Invalid email for Authentication </FormErrorMessage>
                 </FormControl>
-                <FormControl isInvalid={true} py="2">
+                <FormControl isInvalid={false} py="2">
                     <FormLabel>Password</FormLabel>
                     <Input type='password' placeholder='Enter Your password' {...register('password', passwordValidate)} />
                     <FormErrorMessage>Invalid password for Authentication </FormErrorMessage>

@@ -28,7 +28,7 @@ export const useRegister = () => {
 
     setLoading(true)
 
-    const register = async({username, email, password, redirectTo = DASHBOARD}) => {
+    const registerUser = async({username, email, password, redirectTo = DASHBOARD}) => {
         setLoading(true)
 
         const userNameExist = isUsernameExist(username)
@@ -77,7 +77,7 @@ export const useRegister = () => {
     }
 
     
-    return {register, isLoading}
+    return {registerUser, isLoading}
 }
 
 export const useLogin = () => {
