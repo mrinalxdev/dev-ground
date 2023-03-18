@@ -17,6 +17,7 @@ export const useAddPost = () => {
             date: Date.now(),
             likes: [],
         })
+        setLoading(false)
     }
 
 
