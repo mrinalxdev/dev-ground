@@ -8,6 +8,7 @@ import { LOGIN } from '../lib/routes'
 // import { Box } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import { setDoc, doc } from 'firebase/firestore'
+import { isUsernameExist } from '../utils/isUserNameExist'
 
 export const useAuth = () => {
 
@@ -23,13 +24,14 @@ export const useAuth = () => {
 export const useRegister = () => {
     const [isLoading, setLoading] = useState(false)
     const toast = useToast()
+    const navigate = useNavigate()
 
     setLoading(true)
 
     const register = async({username, email, password, redirectTo = DASHBOARD}) => {
         setLoading(true)
 
-        const userNameExist = isUserNameExist(username)
+        const userNameExist = isUsernameExist(username)
 
         if(username) {
             toast({
