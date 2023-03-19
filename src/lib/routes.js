@@ -3,6 +3,7 @@ import Login from '../components/auth/Login'
 import Register from '../components/auth/Register'
 import Dashboard from '../components/dashboard/Dashboard'
 import Layout from '../components/layout/index'
+import PublicRoute from '../components/dashboard/PublicRoute'
 
 export const ROOT = '/' 
 export const LOGIN = '/login'
@@ -14,7 +15,7 @@ export const HOMEPAGE = '/protected/homepage'
 
 export const router = createBrowserRouter([
 
-        {path:ROOT, element:'Public Root'},
+        {path:ROOT, element:<PublicRoute />},
         {path:LOGIN, element:<Login />},
         {path:REGISTER, element: <Register />},
         {path:PROTECTED, element: <Layout />, children: [
