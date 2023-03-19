@@ -11,7 +11,7 @@ const PublicRoute = () => {
             <Heading>Submission For CodeFest</Heading>
 
             <Heading size='sm'>
-            For Loggin In Email : usertest@gmail.com Password : mrinal123
+            For Loggin In Email : mrinal@gmail.com Password : mrinalTest1
           </Heading>
               
 
