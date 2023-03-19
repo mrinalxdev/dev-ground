@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, Text  } from '@chakra-ui/react'
 
 const Post = ({post}) => {
-    const {} = post
+    const { text } = post
 
 
   return (
@@ -11,7 +11,7 @@ const Post = ({post}) => {
 
             <Box px='2' minH='100px' minW='400px'>
                 <Text wordBreak='break-word' fontSize='md'>
-                    This is New Post
+                    {text}
                 </Text>
             </Box>
 
