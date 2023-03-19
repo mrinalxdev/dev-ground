@@ -6,29 +6,21 @@ import { Link } from 'react-router-dom'
 const PublicRoute = () => {
   return (
     <Box>
-        <Center w='100%' h='100vh' justify='space-between'>
+        <Center w='100%' h='100vh'>
+          <Box justify='space-between'>
             <Heading>Submission For CodeFest</Heading>
 
             <Heading size='sm'>
-              For Multiple Users Please Login using : 
+            For Loggin In Email : usertest@gmail.com Password : mrinal123
+          </Heading>
+              
 
-              email : usertest@gmail.com
-              password : user1234
-
-              email : usertest1@gmail.com
-              password : user1234
-
-              email : usertest2@gmail.com
-              password : user1234
-
-              email : usertest3@gmail.com
-              password : user1234
-            </Heading>
-
-            
-              <Link to={LOGIN}>
+          </Box>
+          <Link to={LOGIN} className='mx-auto text-center p-2 rounded-lg bg-cyan-700'>
                   Login
               </Link>
+
+          
             
         </Center>
     </Box>
